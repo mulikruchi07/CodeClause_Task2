@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.resume-preview {
+    margin-top: 30px;
+    border-top: 2px solid #3498db;
+    padding-top: 20px;
+}
+
+.resume-preview h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.resume-formatted {
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.resume-formatted h1 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.resume-formatted p,
+.resume-formatted h3 {
+    margin: 5px 0;
+    color: #34495e;
+}
+
+/* Template 1 */
+.template1 h1 {
+    color: #3498db;
+}
+
+.template1 h3 {
+    color: #2980b9;
+}
+
+/* Template 2 */
+.template2 {
+    background-color: #ffffff;
+    border: 1px solid #bdc3c7;
+}
+
+.template2 h1 {
+    color: #e74c3c;
+}
+
+.template2 h3 {
+    color: #c0392b;
+}
+
+/* Template 3 */
+.template3 {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+.template3 h1 {
+    color: #e67e22;
+}
+
+.template3 h3 {
+    color: #d35400;
+}
+
+.template3 p {
+    color: #ecf0f1;
+}
+ 
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Builder</h1>
+        <form id="resumeForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="linkedin">LinkedIn:</label>
+                <input type="url" id="linkedin" name="linkedin">
+            </div>
+            <div class="form-group">
+                <label for="github">GitHub:</label>
+                <input type="url" id="github" name="github">
+            </div>
+            <div class="form-group">
+                <label for="education">Education:</label>
+                <textarea id="education" name="education" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience:</label>
+                <textarea id="experience" name="experience" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills:</label>
+                <textarea id="skills" name="skills" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="projects">Projects:</label>
+                <textarea id="projects" name="projects" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="template">Choose Template:</label>
+                <select id="template" name="template" required>
+                    <option value="template1">Template 1</option>
+                    <option value="template2">Template 2</option>
+                    <option value="template3">Template 3</option>
+                </select>
+            </div>
+            <button type="submit">Generate Resume</button>
+        </form>
+        <div id="resumePreview" class="resume-preview">
+            <h2>Resume Preview</h2>
+            <div id="finalResume" class="resume-formatted template1">
+                <h1 id="previewName"></h1>
+                <p id="previewEmail"></p>
+                <p id="previewPhone"></p>
+                <p id="previewAddress"></p>
+                <p id="previewLinkedIn"></p>
+                <p id="previewGitHub"></p>
+                <h3>Education</h3>
+                <p id="previewEducation"></p>
+                <h3>Experience</h3>
+                <p id="previewExperience"></p>
+                <h3>Skills</h3>
+                <p id="previewSkills"></p>
+                <h3>Projects</h3>
+                <p id="previewProjects"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    document.getElementById('previewName').textContent = document.getElementById('name').value;
+    document.getElementById('previewEmail').textContent = 'Email: ' + document.getElementById('email').value;
+    document.getElementById('previewPhone').textContent = 'Phone: ' + document.getElementById('phone').value;
+    document.getElementById('previewAddress').textContent = 'Address: ' + document.getElementById('address').value;
+    document.getElementById('previewLinkedIn').textContent = 'LinkedIn: ' + document.getElementById('linkedin').value;
+    document.getElementById('previewGitHub').textContent = 'GitHub: ' + document.getElementById('github').value;
+    document.getElementById('previewEducation').textContent = document.getElementById('education').value;
+    document.getElementById('previewExperience').textContent = document.getElementById('experience').value;
+    document.getElementById('previewSkills').textContent = document.getElementById('skills').value;
+    document.getElementById('previewProjects').textContent = document.getElementById('projects').value;
+
+    // Change template class based on selection
+    const selectedTemplate = document.getElementById('template').value;
+    const finalResume = document.getElementById('finalResume');
+    finalResume.className = `resume-formatted ${selectedTemplate}`;
+
+    document.getElementById('resumePreview').style.display = 'block';
+});
+    </script>
+</body>
+</html>
